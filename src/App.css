@@ -1,184 +1,319 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* ---------------------------------------------------------------
+   OddsEngine — betting math calculators
+   Palette: cool ink and paper, with a single brass accent.
+   Verdict green/red are the only other colors, so they read as
+   signal rather than decoration.
+   --------------------------------------------------------------- */
+
+:root {
+  --ink: #111920;
+  --ink-soft: #2b3844;
+  --muted: #61707d;
+  --line: #d7dee3;
+  --line-strong: #b9c4cc;
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --brass: #96701d;
+  --brass-soft: #f3ead6;
+  --good: #1a6b46;
+  --bad: #9c332a;
+
+  --radius: 3px;
+  --measure: 60rem;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-#center {
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Shell ----------------------------------------------------- */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+header {
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+  padding: 3rem 0 1.25rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+header p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- Tabs ------------------------------------------------------ */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--line-strong);
+  margin-bottom: 2.5rem;
+}
+
+.tab {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab.active {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--brass);
+}
+
+/* --- Section --------------------------------------------------- */
+
+section h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hint {
+  margin: 0 0 1.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 48ch;
+}
+
+/* --- Form ------------------------------------------------------ */
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1.1rem 1.25rem;
+  align-items: end;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+label {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+input {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.7rem;
   width: 100%;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+input:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+  border-color: var(--brass);
+}
+
+button[type="submit"] {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--surface);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  justify-self: start;
+}
+
+button[type="submit"]:hover {
+  background: var(--ink-soft);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+/* --- Results --------------------------------------------------- */
+
+.result {
+  margin-top: 1.75rem;
+}
+
+.verdict {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--brass);
+}
+
+.verdict.good {
+  color: var(--good);
+  border-left-color: var(--good);
+}
+
+.verdict.bad {
+  color: var(--bad);
+  border-left-color: var(--bad);
+}
+
+.result > p:not(.verdict) {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.result > p:not(.verdict)::first-line {
+  font-variant-numeric: tabular-nums;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Table ----------------------------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+}
+
+thead th {
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0 0 0.5rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+thead th:first-child {
+  text-align: left;
+}
+
+tbody td {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+tbody td:first-child {
+  text-align: left;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Errors ---------------------------------------------------- */
+
+.error {
+  margin: 1.5rem 0 0;
+  padding: 0.7rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--bad);
+  border-left-width: 3px;
+  border-radius: var(--radius);
+  color: var(--bad);
+  font-size: 0.9rem;
+}
+
+/* --- Small screens --------------------------------------------- */
+
+@media (max-width: 34rem) {
+  header {
+    padding-top: 2rem;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  header h1 {
+    font-size: 1.6rem;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .verdict {
+    font-size: 1.3rem;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  dt {
+    margin-top: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
   }
 }

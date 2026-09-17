@@ -28,7 +28,7 @@ export default function App() {
         <h1>OddsEngine</h1>
         <p>Betting math calculators</p>
       </header>
-      
+
       <nav className="tabs">
         {TABS.map((t) => (
           <button
