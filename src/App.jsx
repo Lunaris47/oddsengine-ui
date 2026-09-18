@@ -1,4 +1,5 @@
 import { useState } from "react";
+import About from "./About";
 import Converter from "./calculators/Converter";
 import NoVig from "./calculators/NoVig";
 import Parlay from "./calculators/Parlay";
@@ -9,17 +10,18 @@ import Arbitrage from "./calculators/Arbitrage";
 import "./App.css";
 
 const TABS = [
+  { id: "about", label: "Start here", Component: About },
   { id: "converter", label: "Converter", Component: Converter },
   { id: "novig", label: "No-Vig", Component: NoVig },
-  { id: "parlay", label: "Parlay", Component: Parlay },
   { id: "ev", label: "EV", Component: Ev },
   { id: "kelly", label: "Kelly", Component: Kelly },
+  { id: "parlay", label: "Parlay", Component: Parlay },
   { id: "hedge", label: "Hedge", Component: Hedge },
   { id: "arbitrage", label: "Arbitrage", Component: Arbitrage },
 ];
 
 export default function App() {
-  const [active, setActive] = useState("converter");
+  const [active, setActive] = useState("about");
   const Active = TABS.find((t) => t.id === active).Component;
 
   return (
@@ -41,7 +43,7 @@ export default function App() {
         ))}
       </nav>
 
-      <Active />
+      <Active onNavigate={setActive} />
     </main>
   );
 }
